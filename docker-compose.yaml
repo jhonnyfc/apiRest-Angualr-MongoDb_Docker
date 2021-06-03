@@ -1,0 +1,68 @@
+version: '3.7'
+
+services:
+  # backendoee:
+  #   container_name: backendoee
+  #   depends_on:
+  #     - mongoexp
+  #   build:
+  #       context: ./backendoee
+  #       dockerfile: Dockerfile
+  #   ports:
+  #       - 8080:8080
+  #   networks:
+  #     - app
+
+  frontend:
+    # depends_on:
+    #   - backend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    tty: true # to keep the connection alive until frontend is running
+    ports:
+      - 4200:4200
+    volumes:
+      - ./frontend:/app/frontend
+    networks:
+      - app
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:4.0.4
+    env_file:
+      - .env
+    environment:
+      MONGO_INITDB_DATABASE: oeebbdd
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    volumes:
+      - ./mongo-volume:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - app
+
+  mongoexp:
+    container_name: mongoexp
+    image: mongo-express:0.54.0
+    restart: always
+    ports:
+      - 8081:8081
+    env_file:
+      - .env
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+      ME_CONFIG_MONGODB_AUTH_DATABASE: admin
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ROOT_USER}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD}
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGOEXPRESS_LOGIN}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGOEXPRESS_PASSWORD}
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
