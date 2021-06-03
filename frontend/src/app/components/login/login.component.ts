@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MododataService } from 'src/app/services/mododata.service';
 import { UserService } from 'src/app/services/user.service';
 import { Usuario } from 'src/app/utils/interfaces';
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     private _user : UserService,
     private _builder : FormBuilder,
     private _http: HttpClient,
+    private _router: Router
   ) {
     this.singInForm = this._builder.group({
       id: ['',Validators.required],
@@ -28,8 +30,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if (this._strogaType.localStroageAcivate())
-
+    if (this._user.isLogged())
+    this._router.navigate(["/listausers"])
   }
 
   loginUsuario(values:Usuario){
@@ -40,12 +42,10 @@ export class LoginComponent implements OnInit {
     })
       .subscribe(
         data => {
+          console.log(data)
           this._user.user = data
           alert("Acceso hecho con exito")
-          // this._router.navigate(["/perfil"])
-          // console.log(this._user.user)
-          // console.log(this._user.isLogged());
-          // this._user.setFoto()
+          this._router.navigate(["/listausers"])
         },
         error => {
           alert(error.error)
