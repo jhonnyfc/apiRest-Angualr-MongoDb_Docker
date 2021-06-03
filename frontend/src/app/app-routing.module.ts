@@ -4,7 +4,7 @@ import { AltausuariosComponent } from './components/altausuarios/altausuarios.co
 import { LoginComponent } from './components/login/login.component';
 
 // ng g c components/alta --skipTests
-// ng generate service services/user
+// ng generate service services/mododata
 // ng g guard guards/authv --skipTests
 
 const routes: Routes = [
@@ -27,4 +27,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

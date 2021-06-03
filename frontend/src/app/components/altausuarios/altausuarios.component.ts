@@ -39,8 +39,7 @@ export class AltausuariosComponent implements OnInit {
         alert("Alta hecha con exito")
       },
       error => {
-        console.log(error)
-        alert("Erorr al hace data alta")
+        alert(error.error)
       }
     )
   }

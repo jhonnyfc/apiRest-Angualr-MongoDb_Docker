@@ -1,6 +1,6 @@
 export interface Usuario{
-    id? : string
+    id?: string
     nombre? : string
     edad? : number
-    password? : string
+    password?: string
 }
