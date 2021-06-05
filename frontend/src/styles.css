@@ -2,3 +2,8 @@
 @import 'resurces/css/bootstrap.min.css';
 @import 'resurces/css/bootstrap-grid.min.css';
 @import 'resurces/css/bootstrap-reboot.min.css';
+
+body {
+	background: linear-gradient(to right,rgba(255, 255, 255, 0.829), rgba(193, 225, 255, 0.829)), url('assets/fondo.jpg') no-repeat;
+	background-size: cover;
+}

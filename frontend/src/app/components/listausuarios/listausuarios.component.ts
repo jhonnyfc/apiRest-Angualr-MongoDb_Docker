@@ -11,6 +11,10 @@ import { Usuario } from 'src/app/utils/interfaces';
 })
 export class ListausuariosComponent implements OnInit {
 
+  header = {
+    "Access-Control-Allow-Origin": "*"
+  }
+
   listaUsuarios : Usuario[] = []
 
   constructor(
@@ -20,11 +24,9 @@ export class ListausuariosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this._user.isLogged())
+    // console.log(this._user.isLogged())
     this._http.get<Usuario[]>("http://localhost:8080/usuario/all",
-        {
-            responseType: "json"
-      })
+    {withCredentials: true,responseType: "json", headers : this.header})
       .subscribe((data: Usuario[]) => {
         this.listaUsuarios = data;
       });
@@ -32,6 +34,6 @@ export class ListausuariosComponent implements OnInit {
 
   logOut(){
     this._user.clearUser()
-    this._router.navigate(["/"])
+    this._router.navigate(["/login"])
   }
 }

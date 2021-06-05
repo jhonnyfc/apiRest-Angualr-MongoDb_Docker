@@ -15,47 +15,39 @@ import { Usuario } from 'src/app/utils/interfaces';
 export class LoginComponent implements OnInit {
 
   singInForm : FormGroup
+  switchActivo : boolean
 
   constructor(
     public _strogaType: MododataService,
     private _user : UserService,
-    private _builder : FormBuilder,
-    private _http: HttpClient,
-    private _router: Router
+    private _builder : FormBuilder
   ) {
     this.singInForm = this._builder.group({
       id: ['',Validators.required],
       password: ['',Validators.compose([Validators.required])]
     })
+    this.switchActivo = true
   }
 
   ngOnInit(): void {
-    if (this._user.isLogged())
-    this._router.navigate(["/listausers"])
+    // if (this._user.isLogged())
+    //   this._router.navigate(["/listausers"])
+    
   }
 
   loginUsuario(values:Usuario){
-    // console.log(values+"  "+this._user.isLogged());
-    this._http.post("http://localhost:8080/usuario/login",
-    values, {responseType: "json",
-      //header},
-    })
-      .subscribe(
-        data => {
-          console.log(data)
-          this._user.user = data
-          alert("Acceso hecho con exito")
-          this._router.navigate(["/listausers"])
-        },
-        error => {
-          alert(error.error)
-        }
-      )
+    this._user.loginUsuario(values)
   }
   
   
   eventCheck(event:boolean){
+    this.switchActivo = false
     this._strogaType.setLocalStorageMode(event)
-    console.log(this._strogaType.isLocalAcivate())
+    // console.log(this._strogaType.isLocalAcivate())
+    this.switchActivo = true
+  }
+
+  estaLog(){
+    console.log(this._user.isLogged())
   }
 }

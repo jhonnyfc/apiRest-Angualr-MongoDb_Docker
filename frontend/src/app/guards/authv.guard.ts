@@ -17,6 +17,7 @@ export class AuthvGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    console.log(this._user.isLogged()+" adcapom po")
     if (!this._user.isLogged()){
         alert("No tienes acceso")
         this._router.navigate(["/login"])
