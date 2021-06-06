@@ -7,11 +7,12 @@
     <input [disabled]="" #modoStrorage [checked]="this._strogaType.isLocalAcivate()" (change)="eventCheck(modoStrorage.checked)"
       class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
 
-    <ng-template [ngIf]="!this._strogaType.isLocalAcivate()" [ngIfElse]="volatilOn">
-      <label class="form-check-label" for="flexSwitchCheckDefault">Modo Volatil Off</label>
-    </ng-template>
-    <ng-template #volatilOn>
+    <ng-template [ngIf]="this._strogaType.isLocalAcivate()" [ngIfElse]="volatilOff">
       <label class="form-check-label" for="flexSwitchCheckDefault">Modo Volatil On</label>
+    </ng-template>
+
+    <ng-template #volatilOff>
+      <label class="form-check-label" for="flexSwitchCheckDefault">Modo Volatil Off</label>
     </ng-template>
 
   </div>
@@ -41,8 +42,8 @@
           <br><br>
           <a href="/altausuarios" class="btn btn-primary  w-70">Alta Usuario</a>
 
-          <!-- <br><br>
-        <a (click)="estaLog()" class="btn btn-primary  w-70">Probar</a> -->
+          <br><br>
+        <!-- <a (click)="estaLog()" class="btn btn-primary  w-70">Probar</a> -->
         </div>
       </form>
     </div>

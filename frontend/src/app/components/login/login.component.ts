@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MododataService } from 'src/app/services/mododata.service';
 import { UserService } from 'src/app/services/user.service';
 import { Usuario } from 'src/app/utils/interfaces';
@@ -32,7 +30,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     // if (this._user.isLogged())
     //   this._router.navigate(["/listausers"])
-    
+    this._strogaType.isLocalAcivate()
   }
 
   loginUsuario(values:Usuario){
@@ -47,7 +45,7 @@ export class LoginComponent implements OnInit {
     this.switchActivo = true
   }
 
-  estaLog(){
-    console.log(this._user.isLogged())
-  }
+  // estaLog(){
+  //   this._strogaType.isLocalAcivate()
+  // }
 }

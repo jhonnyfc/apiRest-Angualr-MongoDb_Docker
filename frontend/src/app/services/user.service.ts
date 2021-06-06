@@ -16,40 +16,23 @@ export class UserService{
   }
 
   user: Usuario
+  IS_LOGGED_COOKIE: string = "IS_LOGGED_COOKIE"
+  expTime:number = 120/(60*60*24)
 
   constructor(
     private _router: Router,
     private _http: HttpClient
   ) {
     this.user = {}
-    this._http.get("http://localhost:8080/usuario/islogged"
-      , {withCredentials: true,responseType: "json", headers : this.header}
-    )
-    .subscribe(
-      (data: Usuario) => {
-        console.log(data)
-        this.user = data
-      },
-      error => {
-        console.log(error.error)
-    })
+    this.updateLogStatus()
   }
 
 
   isLogged(){
-    this._http.get("http://localhost:8080/usuario/islogged"
-      , {withCredentials: true,responseType: "json", headers : this.header}
-    ).toPromise().then( data => {
-        console.log(data)
-        this.user = data
-      },
-        error => {
-        console.log(error.error)
-        this.user = {}
-    })
+    if (Cookie.get(this.IS_LOGGED_COOKIE) === "")
+      this.updateLogStatus()
 
-    console.log(!(Object.keys(this.user).length === 0)+" nice")
-    return !(Object.keys(this.user).length === 0)
+    return Cookie.get(this.IS_LOGGED_COOKIE) === "true"
   }
 
   async clearUser(){
@@ -60,6 +43,7 @@ export class UserService{
         console.log(data)
       },
       error => {
+        Cookie.deleteAll("/")
         console.log(error.error)
     })
     this.user = {}
@@ -74,11 +58,39 @@ export class UserService{
           console.log(data)
           this.user = data
           alert("Acceso hecho con exito")
+          Cookie.set(this.IS_LOGGED_COOKIE, String(true), this.expTime,"/")
           this._router.navigate(["/listausers"])
         },
         error => {
           alert(error.error)
         }
       )
+  }
+
+  updateLogStatus(){
+    this._http.get("http://localhost:8080/usuario/islogged"
+      , {withCredentials: true,responseType: "json", headers : this.header}
+    ).toPromise().then( data => {
+        console.log(data)
+        this.user = data
+        Cookie.set(this.IS_LOGGED_COOKIE, String(true), this.expTime,"/")
+      },
+        error => {
+        Cookie.set(this.IS_LOGGED_COOKIE, String(false), this.expTime,"/")
+        console.log(error.error)
+        this.user = {}
+    })
+  }
+
+  borrarUser(id:String){
+    this._http.get("http://localhost:8080/usuario/del/"+id
+      , {withCredentials: true,responseType: "text", headers : this.header}
+    ).toPromise().then( data => {
+        console.log(data)
+        alert("Eliminado con exito")
+      },
+      error => {
+          alert(error.error)
+    })
   }
 }

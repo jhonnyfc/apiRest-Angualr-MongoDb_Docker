@@ -39,9 +39,9 @@
         <div class="col text-center">
           <button [disabled]="userSignUp.invalid" type="submit" class="btn btn-primary  w-50">Dar Alta</button>
           <br>
-          <br><a (click)="backClicked()" class="btn btn-primary  w-70">Go Back</a>
+          <br><a (click)="backClicked()" class="btn btn-primary  w-70" *ngIf="!_user.isLogged()">Go Back</a>
           <!-- <br> -->
-          <!-- <a href="/listausers" class="btn btn-primary  w-70">Go Back</a> -->
+          <a href="/listausers" *ngIf="_user.isLogged()" class="btn btn-primary  w-70">Ver lista</a>
         </div>
       </form>
 
