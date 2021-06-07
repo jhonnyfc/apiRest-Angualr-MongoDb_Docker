@@ -24,6 +24,7 @@ Para compilar el backend para Docker poner el valor **spring.data.mongodb.host=m
 ```
 docker-compose up
 ```
+Para ejecutar el frontend hace falta la carpeta /node_modules [Link](https://drive.google.com/file/d/1HTNUe3EA3EiA0mMbP8jpPHRND4eMmGQw/view?usp=sharing), ponerla dentro de /frontend
 
 ### Docker:
 Con Docker en la dirección **localhost:8081** está disponible **mongo-express**, las credenciales están en el fichero **.env**<br>
