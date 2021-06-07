@@ -15,7 +15,7 @@ Con lo que respecta al frontend se ha utilizado Angular/cli@12.0.2, modelando la
 <br><br>
 ### Compilación y ejecución del backend
 ````
-mvn clean install
+mvnw package
 java -jar target/backendoee-0.0.1-SNAPSHOT.jar
 ````
 Para compilar el backend para Docker poner el valor **spring.data.mongodb.host=mongodb** en el proyecto de Spring.
