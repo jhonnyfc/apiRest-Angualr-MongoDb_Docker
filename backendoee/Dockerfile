@@ -8,7 +8,8 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 
 
 # recorad cambiar el nombre de host en pom.xml
-# mvn clean install -> compilacion
+# ~ mvn clean install -> compilacion
+# mvnw package
 # java -jar target/backendoee-0.0.1-SNAPSHOT.jar -> ejecucion build
 
 # NO hace falta, solo si se quiere la img individual

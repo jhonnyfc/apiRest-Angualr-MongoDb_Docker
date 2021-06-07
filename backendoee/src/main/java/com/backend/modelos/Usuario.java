@@ -2,10 +2,10 @@ package com.backend.modelos;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotNull;
 
 
 @Document(collection = "Usuario")
@@ -16,17 +16,17 @@ public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@NotNull
-	private String email;
+	private String id;
 	private String nombre;
 	private Integer edad;
 	private String password;
 
-	public String getEmail() {
-		return email;
+	public String getId() {
+		return id;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getNombre() {

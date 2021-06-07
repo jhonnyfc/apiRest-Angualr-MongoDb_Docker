@@ -1,21 +1,22 @@
 version: '3.7'
 
 services:
-  # backendoee:
-  #   container_name: backendoee
-  #   depends_on:
-  #     - mongoexp
-  #   build:
-  #       context: ./backendoee
-  #       dockerfile: Dockerfile
-  #   ports:
-  #       - 8080:8080
-  #   networks:
-  #     - app
+  backendoee:
+    container_name: backendoee
+    depends_on:
+      - mongoexp
+    build:
+        context: ./backendoee
+        dockerfile: Dockerfile
+    ports:
+        - 8080:8080
+    networks:
+      - app
 
   frontend:
-    # depends_on:
-    #   - backend
+    container_name: frontend
+    depends_on:
+      - backendoee
     build:
       context: ./frontend
       dockerfile: Dockerfile
