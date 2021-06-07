@@ -15,7 +15,7 @@ Con lo que respecta al frontend se ha utilizado Angular/cli@12.0.2, modelando la
 <br><br>
 ### Compilación y ejecución del backend
 ````
-mvnw package
+mvn clean install
 java -jar target/backendoee-0.0.1-SNAPSHOT.jar
 ````
 Para compilar el backend para Docker poner el valor **spring.data.mongodb.host=mongodb** en el proyecto de Spring.
@@ -24,6 +24,13 @@ Para compilar el backend para Docker poner el valor **spring.data.mongodb.host=m
 ```
 docker-compose up
 ```
+
+### Docker:
+Con Docker en la dirección **localhost:8081** está disponible **mongo-express**, las credenciales están en el fichero **.env**<br>
+La **pagina web** se ejectua en **localhost:4200**. <br>
+El **backend** se ejecuta en **localhost:8080**. <br>
+La base de datos de **mongo** en **localhost:27017**. <br>
+
 
 <br><br>
 
