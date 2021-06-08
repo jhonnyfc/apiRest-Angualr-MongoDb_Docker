@@ -6,7 +6,7 @@ Se ha realizado un sistema web MVC donde se pueden dar de alta usuarios, que se 
 
 <br>
 
-Para la gestión de la base de datos se ha realizado un ApiRest con Spring que administra todas las llamadas y gestiona las sesiones. Para mantener los datos de session de ha utilizado HttpSession. Se ha utilizado la __BCryptPasswordEncoder__ para encriptar las contraseñas. Para la prueba del api se hautilizado postman, se adjuntan la coleción de llamadas en la carpeta utiles.
+Para la gestión de la base de datos se ha realizado un ApiRest con Spring que administra todas las llamadas y gestiona las sesiones. Para mantener los datos de session de ha utilizado HttpSession. Se ha utilizado __BCryptPasswordEncoder__ para encriptar las contraseñas. Para la prueba del api se hautilizado postman, se adjuntan la coleción de llamadas en la carpeta utiles.
 
 <br>
 
